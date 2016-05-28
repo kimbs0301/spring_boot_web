@@ -34,7 +34,6 @@ public class AccountController {
 	@RequestMapping(value = "/account", method = RequestMethod.GET)
 	@ResponseBody
 	public AccountXml getAccountXml() {
-		System.out.println("xml");
 		AccountXml account = new AccountXml();
 		account.setName("aaaa");
 		account.setText("ok");
