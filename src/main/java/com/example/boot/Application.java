@@ -1,24 +1,20 @@
 package com.example.boot;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
-import org.springframework.boot.context.embedded.MimeMappings;
-import org.springframework.boot.context.embedded.ServletContextInitializer;
-import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.PropertySource;
 
 import com.example.boot.configuration.JunitConfig;
 import com.example.boot.configuration.WebConfig;
-import com.example.boot.configuration.WebInitializer;
 
 // https://github.com/syakuis/syaku-gradle/tree/spring-hibernate5
 // http://credemol.blogspot.kr/2011/01/spring-junit-transaction.html
@@ -29,49 +25,51 @@ import com.example.boot.configuration.WebInitializer;
 // http://websystique.com/springmvc/spring-mvc-requestbody-responsebody-example/
 // http://millky.com/@origoni/post/1144?language=ko_kr
 // https://github.com/origoni/spring-blog
+// http://www.mkyong.com/spring-mvc/spring-4-mvc-ajax-hello-world-example/
 
 @Configuration
-@ComponentScan(basePackages = { "com.example.boot" }, excludeFilters = @Filter(value = {
-		JunitConfig.class, WebConfig.class }, type = FilterType.ASSIGNABLE_TYPE))
-public class Application //extends SpringBootServletInitializer
-{
+@ImportResource("classpath:spring/root-context.xml")
+@ComponentScan(basePackages = { "com.example.boot" }, excludeFilters = @Filter(value = { JunitConfig.class,
+		WebConfig.class }, type = FilterType.ASSIGNABLE_TYPE))
+@PropertySource(value = { "classpath:common.properties", "classpath:database.properties" })
+public class Application {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
+
+	// java -jar myproject.jar --spring.config.name=myproject
 	
-//	@Override
-//    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-//		System.out.println();
-//		System.out.println();
-//		System.out.println();
-//        return application.parent(Global.class).sources(Application.class).profiles("container");
-//    }
-
 	@Bean
-	public EmbeddedServletContainerFactory servletContainer() {
-		// org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration;
-		TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
-		MimeMappings mappings = new MimeMappings(MimeMappings.DEFAULT);
-		mappings.add("html", "text/html;charset=UTF-8");
-		mappings.add("json", "application/json;charset=UTF-8");
-		mappings.add("xml", "application/xml;charset=UTF-8");
-		factory.setMimeMappings(mappings);
-		factory.setPort(8080);
-		factory.setSessionTimeout(50, TimeUnit.MINUTES);
-		factory.setContextPath("/mvc");
-		
-		factory.setDocumentRoot(new File("/workspace/luna/spring_boot_example/src/main/webapp"));
-		factory.setBaseDirectory(new File("/workspace/luna/spring_boot_example/src/main/webapp"));
+	public CommandLineRunner init() {
+		// init
 
-		
-		List<ServletContextInitializer> servletContextInitializers = new ArrayList<>();
-		servletContextInitializers.add(new WebInitializer());
-		factory.setInitializers(servletContextInitializers);
-		return factory;
+		return new CommandLineRunner() {
+
+			@Override
+			public void run(String... args) throws Exception {
+				LOGGER.debug("CommandLineSize:{}", args.length);
+				for (String command : args) {
+					LOGGER.debug("{}", command);
+				}
+			}
+		};
+
+		// return (String[] args) -> {
+		// System.out.println("ok");
+		// };
 	}
+	
+	@Bean
+	public BeanOrderInfo test() {
+		return new BeanOrderInfo("app");
+	}
+	
+//	@Bean
+//	public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
+//		return new PropertySourcesPlaceholderConfigurer();
+//	}
 
 	public static void main(String[] args) {
-//		SpringApplicationBuilder springApplicationBuilder = new SpringApplicationBuilder(Application.class);
-//		SpringApplication springApplication = springApplicationBuilder.build();
-//		springApplication.run(args);
-		
-		SpringApplication.run(Application.class, args);
+		SpringApplicationBuilder springApplicationBuilder = new SpringApplicationBuilder(Application.class);
+		SpringApplication springApplication = springApplicationBuilder.build();
+		springApplication.run(args);
 	}
 }

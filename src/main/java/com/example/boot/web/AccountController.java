@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.example.boot.account.model.Account;
@@ -25,7 +24,7 @@ public class AccountController {
 		Account account = new Account();
 		return account;
 	}
-	
+
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ResponseEntity<Void> create(UriComponentsBuilder ucBuilder) {
 		HttpHeaders headers = new HttpHeaders();
@@ -39,7 +38,6 @@ public class AccountController {
 		AccountXml account = new AccountXml();
 		account.setName("aaaa");
 		account.setText("ok");
-
 		return account;
 	}
 }

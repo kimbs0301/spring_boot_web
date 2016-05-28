@@ -1,4 +1,4 @@
-package com.example.boot.configuration;
+package com.example.boot.configuration.resolver;
 
 import java.util.Locale;
 
@@ -7,16 +7,15 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.xml.MarshallingView;
 
-public class Jaxb2MarshallingXmlViewResolver implements ViewResolver {
+public class XmlViewResolver implements ViewResolver {
 	private Marshaller marshaller;
 
-	public Jaxb2MarshallingXmlViewResolver(Marshaller marshaller) {
+	public XmlViewResolver(Marshaller marshaller) {
 		this.marshaller = marshaller;
 	}
 
 	@Override
-	public View resolveViewName(String viewName, Locale locale)
-			throws Exception {
+	public View resolveViewName(String viewName, Locale locale) throws Exception {
 		MarshallingView view = new MarshallingView();
 		view.setMarshaller(marshaller);
 		return view;

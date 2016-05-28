@@ -9,7 +9,7 @@ import com.example.boot.configuration.AbstractDao;
 
 @Repository("accountDao")
 public class AccountDaoImpl extends AbstractDao implements AccountDao {
-	
+
 	@Override
 	public Account findById(int id) {
 		return getSession().get(Account.class, id);
@@ -19,17 +19,17 @@ public class AccountDaoImpl extends AbstractDao implements AccountDao {
 	public void save(Account entity) {
 		getSession().save(entity);
 	}
-	
+
 	@Override
 	public void persist(Account entity) {
 		getSession().persist(entity);
 	}
-	
+
 	@Override
 	public void delete(Account entity) {
 		getSession().delete(entity);
 	}
-	
+
 	@Override
 	public Criteria createEntityCriteria() {
 		return getSession().createCriteria(Account.class);

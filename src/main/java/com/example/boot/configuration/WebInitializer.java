@@ -11,25 +11,27 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.servlet.DispatcherServlet;
 
 public class WebInitializer implements ServletContextInitializer {
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(WebInitializer.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(WebInitializer.class);
 
 	public WebInitializer() {
-		LOGGER.error("");
+		LOGGER.debug("");
 	}
 
 	@Override
 	public void onStartup(ServletContext container) throws ServletException {
-		LOGGER.error("");
+		LOGGER.debug("");
 		AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
 		context.setConfigLocation("com.example.boot.web,com.example.boot.api");
 		context.register(WebConfig.class);
+		// container.addListener(new ContextLoaderListener(context));
+
 		context.setServletContext(container);
 
-		ServletRegistration.Dynamic servlet = container.addServlet(
-				"dispatcher", new DispatcherServlet(context));
+		DispatcherServlet dispatcher = new DispatcherServlet(context);
+		ServletRegistration.Dynamic servlet = container.addServlet("dispatcher", dispatcher);
 
 		servlet.setLoadOnStartup(1);
 		servlet.addMapping("/");
+
 	}
 }

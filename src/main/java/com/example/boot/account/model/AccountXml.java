@@ -16,7 +16,7 @@ public class AccountXml {
 		this.name = name;
 		this.text = text;
 	}
-	
+
 	@XmlElement
 	public void setName(String name) {
 		this.name = name;
