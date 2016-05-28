@@ -25,6 +25,7 @@ public class EmbeddedTomcatConfig {
 		TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
 		// MimeMappings mappings = new MimeMappings(MimeMappings.DEFAULT);
 		MimeMappings mappings = new MimeMappings();
+		mappings.add("xls", "application/vnd.ms-excel");
 		mappings.add("css", "text/css");
 		mappings.add("txt", "text/plain");
 		mappings.add("png", "image/png");
