@@ -10,7 +10,10 @@ import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration.Enable
 import org.springframework.boot.autoconfigure.web.WebMvcProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -33,6 +36,8 @@ import com.example.boot.BeanOrderInfo;
 import com.example.boot.account.model.AccountXml;
 import com.example.boot.configuration.resolver.JsonViewResolver;
 import com.example.boot.configuration.resolver.XmlViewResolver;
+import com.example.config.test.JunitConfig;
+import com.example.main.Application;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -40,13 +45,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
 @EnableWebMvc
-@Import(EnableWebMvcConfiguration.class)
+@Import(value = {EnableWebMvcConfiguration.class})
 @EnableConfigurationProperties({ WebMvcProperties.class, ResourceProperties.class })
+//@ComponentScan(basePackages = { "com.example.boot" }, excludeFilters = @Filter(value = { Application.class }, type = FilterType.ASSIGNABLE_TYPE))
+@ComponentScan(basePackages = { "com.example.boot" })
 public class WebConfig extends WebMvcConfigurerAdapter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(WebConfig.class);
 
 	public WebConfig() {
+		LOGGER.debug("==============");
 		LOGGER.debug("");
+		LOGGER.debug("==============");
+	}
+	
+	@Bean(name="BeanOrderInfo_web")
+	public BeanOrderInfo test() {
+		return new BeanOrderInfo("web");
 	}
 
 	@Override
@@ -64,11 +78,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 				.mediaType("file", MediaType.MULTIPART_FORM_DATA) //
 				.mediaType("xml", MediaType.APPLICATION_XML) //
 				.mediaType("json", MediaType.APPLICATION_JSON);
-	}
-	
-	@Bean
-	public BeanOrderInfo test() {
-		return new BeanOrderInfo("web");
 	}
 
 	@Bean

@@ -11,11 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.boot.account.dao.AccountDao;
 import com.example.boot.account.model.Account;
-import com.example.boot.configuration.HibernateConfig;
-import com.example.boot.configuration.JunitConfig;
+import com.example.config.test.JunitConfig;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = { JunitConfig.class, HibernateConfig.class })
+@SpringApplicationConfiguration(classes = { JunitConfig.class })
 @WebAppConfiguration
 @Transactional
 public class AccountDaoImplTest {

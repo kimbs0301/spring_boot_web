@@ -25,7 +25,9 @@ public class HibernateConfig {
 	private Environment environment;
 	
 	public HibernateConfig() {
+		LOGGER.debug("==============");
 		LOGGER.debug("");
+		LOGGER.debug("==============");
 	}
 
 	@Bean
