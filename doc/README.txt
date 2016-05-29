@@ -1,5 +1,6 @@
 mvn clean compile
 
+cd /workspace/luna/spring_boot_example
 git diff
 git add -A
 git commit -a -m "ok"

@@ -14,6 +14,20 @@ public class WebInitializer extends SpringBootServletInitializer
 {
 	private static final Logger LOGGER = LoggerFactory.getLogger(WebInitializer.class);
 	
+	public WebInitializer() {
+		LOGGER.debug("==============");
+		LOGGER.debug("");
+		LOGGER.debug("==============");
+	}
+	
+//	@Override
+//	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+//		LOGGER.debug("");
+//		LOGGER.debug("");
+//		LOGGER.debug("");
+//		return application.profiles("local", "svc").sources(LocalCommandLineRunner.class, SvcCommandLineRunner.class);
+//	}
+	
 	@Override
 	public void onStartup(ServletContext container) throws ServletException {
 		LOGGER.debug("==============");
@@ -21,6 +35,8 @@ public class WebInitializer extends SpringBootServletInitializer
 		LOGGER.debug("==============");
 		
 		AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
+		context.setConfigLocations("com.example.config.tomcat");
+		// container.setInitParameter("spring.config.location", "classpath:/common.properties");
 		WebInitializer.onStartup(container, context);
 	}
 	

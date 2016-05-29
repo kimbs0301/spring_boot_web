@@ -12,18 +12,13 @@ import org.springframework.boot.context.embedded.MimeMappings;
 import org.springframework.boot.context.embedded.ServletContextInitializer;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
-import com.example.config.test.JunitConfig;
+// http://docs.spring.io/spring-boot/docs/1.3.5.RELEASE/reference/html/howto-embedded-servlet-containers.html
 
 @Configuration
 //@ComponentScan(excludeFilters = @Filter(value = { JunitConfig.class }, type = FilterType.ASSIGNABLE_TYPE))
-@PropertySource(value = { "classpath:common.properties" })
 public class EmbeddedTomcatConfig {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmbeddedTomcatConfig.class);
 	

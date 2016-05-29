@@ -11,9 +11,7 @@ import org.springframework.boot.autoconfigure.web.WebMvcProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -36,8 +34,6 @@ import com.example.boot.BeanOrderInfo;
 import com.example.boot.account.model.AccountXml;
 import com.example.boot.configuration.resolver.JsonViewResolver;
 import com.example.boot.configuration.resolver.XmlViewResolver;
-import com.example.config.test.JunitConfig;
-import com.example.main.Application;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

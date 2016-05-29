@@ -1,5 +1,8 @@
 package com.example.boot.web;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,15 +16,22 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.example.boot.account.model.Account;
 import com.example.boot.account.model.AccountXml;
+import com.example.boot.account.service.AccountService;
 
 @RestController
 @RequestMapping("/members")
 public class AccountController {
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(AccountController.class);
+	
+	@Autowired
+	private AccountService accountService;
+	
 	@RequestMapping(value = "/member/{memberId}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public Account getAccount(@PathVariable Long memberId) {
+		LOGGER.debug("{}", memberId);
 		Account account = new Account();
+		accountService.config();
 		return account;
 	}
 

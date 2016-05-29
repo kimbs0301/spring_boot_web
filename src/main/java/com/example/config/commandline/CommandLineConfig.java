@@ -6,11 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
 @Configuration
-@PropertySource(value = { "classpath:common.properties" })
 public class CommandLineConfig {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CommandLineConfig.class);
 	
