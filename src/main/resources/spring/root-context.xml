@@ -22,7 +22,17 @@
 	-->
 	
 	<bean class="com.example.boot.BeanOrderInfo">
-		<constructor-arg value="xml"/>
+		<constructor-arg type="java.lang.String" value="xml"/>
+	</bean>
+	
+	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+		<property name="scopes">
+			<map>
+				<entry key="thread">
+					<bean class="org.springframework.context.support.SimpleThreadScope"/>
+				</entry>
+			</map>
+		</property>
 	</bean>
 
 </beans>

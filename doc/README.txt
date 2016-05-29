@@ -24,3 +24,8 @@ cd /tools/tomcat-8.0.33/webapps
 rm -rf /tools/tomcat-8.0.33/webapps/mvc
 cp -R /workspace/luna/spring_boot_example/target/mvc .
 cd /tools/tomcat-8.0.33/bin
+
+
+
+org.springframework.scheduling.config.ScheduledTaskRegistrar
+107

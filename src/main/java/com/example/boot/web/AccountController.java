@@ -29,11 +29,13 @@ public class AccountController {
 	
 	@Autowired
 	private AccountService accountService;
+	@Autowired
+	private String cacheName;
 	
 	@RequestMapping(value = "/member/{memberId}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public Account getAccount(@PathVariable Long memberId) {
-		LOGGER.debug("{}", memberId);
+		LOGGER.debug("{}, {}", memberId, cacheName);
 		Account account = new Account();
 		accountService.config();
 		return account;
