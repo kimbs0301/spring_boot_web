@@ -7,6 +7,10 @@ import com.example.boot.account.dao.AccountDao;
 import com.example.boot.account.model.Account;
 import com.example.boot.configuration.AbstractDao;
 
+/**
+ * @author gimbyeongsu
+ * 
+ */
 @Repository("accountDao")
 public class AccountDaoImpl extends AbstractDao implements AccountDao {
 

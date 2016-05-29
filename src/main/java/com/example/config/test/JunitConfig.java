@@ -9,6 +9,10 @@ import org.springframework.context.annotation.FilterType;
 
 import com.example.boot.configuration.WebConfig;
 
+/**
+ * @author gimbyeongsu
+ * 
+ */
 @Configuration
 @ComponentScan(basePackages = { "com.example.boot" }, excludeFilters = @Filter(value = { WebConfig.class}, type = FilterType.ASSIGNABLE_TYPE))
 public class JunitConfig {

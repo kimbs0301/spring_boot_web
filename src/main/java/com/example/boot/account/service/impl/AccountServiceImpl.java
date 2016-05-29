@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 import com.example.boot.account.service.AccountService;
 import com.example.boot.configuration.Config;
 
+/**
+ * @author gimbyeongsu
+ * 
+ */
 @Service("accountService")
 public class AccountServiceImpl implements AccountService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AccountServiceImpl.class);

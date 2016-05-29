@@ -1,8 +1,12 @@
 package com.example.boot.account.model;
 
+/**
+ * @author gimbyeongsu
+ * 
+ */
 public class SearchCriteria {
-	String username;
-	String email;
+	private String username;
+	private String email;
 
 	public String getUsername() {
 		return username;
@@ -24,5 +28,4 @@ public class SearchCriteria {
 	public String toString() {
 		return "SearchCriteria [username=" + username + ", email=" + email + "]";
 	}
-
 }

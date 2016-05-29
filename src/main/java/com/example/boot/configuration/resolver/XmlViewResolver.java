@@ -7,6 +7,10 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.xml.MarshallingView;
 
+/**
+ * @author gimbyeongsu
+ * 
+ */
 public class XmlViewResolver implements ViewResolver {
 	private Marshaller marshaller;
 

@@ -18,6 +18,10 @@ import com.example.boot.account.model.Account;
 import com.example.boot.account.model.AccountXml;
 import com.example.boot.account.service.AccountService;
 
+/**
+ * @author gimbyeongsu
+ * 
+ */
 @RestController
 @RequestMapping("/members")
 public class AccountController {

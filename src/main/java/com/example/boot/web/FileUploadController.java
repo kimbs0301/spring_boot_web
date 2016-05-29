@@ -23,6 +23,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+/**
+ * @author gimbyeongsu
+ * 
+ */
 @Controller
 @RequestMapping("/file")
 public class FileUploadController {

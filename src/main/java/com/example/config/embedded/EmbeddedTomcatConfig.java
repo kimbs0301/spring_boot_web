@@ -17,8 +17,11 @@ import org.springframework.core.env.Environment;
 
 // http://docs.spring.io/spring-boot/docs/1.3.5.RELEASE/reference/html/howto-embedded-servlet-containers.html
 
+/**
+ * @author gimbyeongsu
+ * 
+ */
 @Configuration
-//@ComponentScan(excludeFilters = @Filter(value = { JunitConfig.class }, type = FilterType.ASSIGNABLE_TYPE))
 public class EmbeddedTomcatConfig {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmbeddedTomcatConfig.class);
 	

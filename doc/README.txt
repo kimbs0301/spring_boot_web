@@ -12,7 +12,8 @@ curl -v -H "Accept: */*" "http://localhost:8080/mvc/members/create"
 curl -v -H "Accept: application/xml" "http://localhost:8080/mvc/members/account.xml"
 http://localhost:8080/mvc/jsps/jsptest
 http://localhost:8080/mvc/jsps/welcome
-
+http://localhost:8080/mvc/filedownload/sample/tmpfile/ok
+http://localhost:8080/mvc/filedownload/sample/tmpfile.json/ok
 
 mvn assembly:assembly
 

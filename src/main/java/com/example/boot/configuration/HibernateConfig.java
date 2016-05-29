@@ -16,6 +16,10 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+/**
+ * @author gimbyeongsu
+ * 
+ */
 @Configuration
 @EnableTransactionManagement
 public class HibernateConfig {

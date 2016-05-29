@@ -6,12 +6,23 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
-public class JsonViewResolver implements ViewResolver {
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * @author gimbyeongsu
+ * 
+ */
+public class JsonViewResolver implements ViewResolver {
+	private ObjectMapper objectMapper;
+	
+	public JsonViewResolver(ObjectMapper objectMapper) {
+		this.objectMapper = objectMapper;
+	}
+	
 	@Override
 	public View resolveViewName(String viewName, Locale locale) throws Exception {
-		MappingJackson2JsonView view = new MappingJackson2JsonView();
-		view.setPrettyPrint(true);
+		MappingJackson2JsonView view = new MappingJackson2JsonView(objectMapper);
+		// view.setPrettyPrint(true);
 		return view;
 	}
 

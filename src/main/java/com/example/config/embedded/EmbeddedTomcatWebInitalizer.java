@@ -8,6 +8,10 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 
 import com.example.boot.configuration.WebInitializer;
 
+/**
+ * @author gimbyeongsu
+ * 
+ */
 public class EmbeddedTomcatWebInitalizer implements ServletContextInitializer {
 
 	@Override

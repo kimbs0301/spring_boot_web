@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
+/**
+ * @author gimbyeongsu
+ * 
+ */
 @Configuration
 public class PropertiesConfig {
 	private static final Logger LOGGER = LoggerFactory.getLogger(PropertiesConfig.class);

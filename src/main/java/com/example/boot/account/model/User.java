@@ -2,22 +2,25 @@ package com.example.boot.account.model;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+/**
+ * @author gimbyeongsu
+ * 
+ */
 public class User {
 
 	@JsonView(Views.Public.class)
-	String username;
-	String password;
+	private String username;
+	private String password;
 	@JsonView(Views.Public.class)
-	String email;
+	private String email;
 	@JsonView(Views.Public.class)
-	String phone;
-	String address;
+	private String phone;
+	private String address;
 
 	public User() {
 	}
 
 	public User(String username, String password, String email, String phone, String address) {
-		super();
 		this.username = username;
 		this.password = password;
 		this.email = email;
@@ -70,5 +73,4 @@ public class User {
 		return "User [username=" + username + ", password=" + password + ", email=" + email + ", phone=" + phone
 				+ ", address=" + address + "]";
 	}
-
 }

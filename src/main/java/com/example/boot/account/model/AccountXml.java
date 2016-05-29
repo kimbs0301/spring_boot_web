@@ -3,6 +3,10 @@ package com.example.boot.account.model;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * @author gimbyeongsu
+ * 
+ */
 @XmlRootElement(name = "account")
 public class AccountXml {
 	private String name;

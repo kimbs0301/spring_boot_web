@@ -8,6 +8,10 @@ import org.springframework.stereotype.Component;
 
 // http://docs.spring.io/spring-boot/docs/1.3.5.RELEASE/reference/html/boot-features-external-config.html
 
+/**
+ * @author gimbyeongsu
+ * 
+ */
 @Component
 @ConfigurationProperties(prefix = "my")
 public class Config {

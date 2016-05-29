@@ -10,6 +10,10 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ * @author gimbyeongsu
+ * 
+ */
 @Entity
 @Table(name = "account")
 public class Account {

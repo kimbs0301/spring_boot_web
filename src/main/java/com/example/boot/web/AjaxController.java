@@ -15,6 +15,10 @@ import com.example.boot.account.model.AjaxResponseBody;
 import com.example.boot.account.model.SearchCriteria;
 import com.example.boot.account.model.User;
 
+/**
+ * @author gimbyeongsu
+ * 
+ */
 @RestController
 @RequestMapping("/ajaxs")
 public class AjaxController {

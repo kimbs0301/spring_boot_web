@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ResourceProperties;
 import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration.EnableWebMvcConfiguration;
 import org.springframework.boot.autoconfigure.web.WebMvcProperties;
@@ -34,20 +35,25 @@ import com.example.boot.BeanOrderInfo;
 import com.example.boot.account.model.AccountXml;
 import com.example.boot.configuration.resolver.JsonViewResolver;
 import com.example.boot.configuration.resolver.XmlViewResolver;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 // http://docs.spring.io/spring/docs/current/spring-framework-reference/html/remoting.html#rest-message-conversion
 
+/**
+ * @author gimbyeongsu
+ * 
+ */
 @Configuration
 @EnableWebMvc
 @Import(value = {EnableWebMvcConfiguration.class})
 @EnableConfigurationProperties({ WebMvcProperties.class, ResourceProperties.class })
-//@ComponentScan(basePackages = { "com.example.boot" }, excludeFilters = @Filter(value = { Application.class }, type = FilterType.ASSIGNABLE_TYPE))
 @ComponentScan(basePackages = { "com.example.boot" })
 public class WebConfig extends WebMvcConfigurerAdapter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(WebConfig.class);
 
+	@Autowired
+	private ObjectMapper objectMapper;
+	
 	public WebConfig() {
 		LOGGER.debug("==============");
 		LOGGER.debug("");
@@ -108,7 +114,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public ViewResolver jsonViewResolver() {
-		return new JsonViewResolver();
+		return new JsonViewResolver(objectMapper);
 	}
 
 	@Bean
@@ -129,8 +135,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-		converter.setObjectMapper(new ObjectMapper()
-				.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false));
+		converter.setObjectMapper(objectMapper);
 		return converter;
 	}
 

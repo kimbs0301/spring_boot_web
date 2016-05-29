@@ -6,6 +6,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author gimbyeongsu
+ * 
+ */
 @Service
 @Profile(value = "local")
 public class LocalCommandLineRunner implements CommandLineRunner {

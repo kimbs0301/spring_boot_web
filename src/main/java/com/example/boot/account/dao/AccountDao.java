@@ -4,6 +4,10 @@ import org.hibernate.Criteria;
 
 import com.example.boot.account.model.Account;
 
+/**
+ * @author gimbyeongsu
+ * 
+ */
 public interface AccountDao {
 	public Account findById(int id);
 

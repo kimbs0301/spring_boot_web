@@ -4,13 +4,17 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+/**
+ * @author gimbyeongsu
+ * 
+ */
 public class AjaxResponseBody {
 	@JsonView(Views.Public.class)
-	String msg;
+	private String msg;
 	@JsonView(Views.Public.class)
-	String code;
+	private String code;
 	@JsonView(Views.Public.class)
-	List<User> result;
+	private List<User> result;
 
 	public String getMsg() {
 		return msg;
