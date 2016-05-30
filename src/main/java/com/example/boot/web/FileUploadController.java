@@ -8,12 +8,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -32,18 +29,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class FileUploadController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FileUploadController.class);
 
+	@Value("#{configProperties['file.upload.path']}")
 	private String fileUploadPath;
-	
-//	@Value("#{['file.upload.path']}")
-//	public String testValue;
-
-	@Autowired
-	private Environment environment;
-
-	@PostConstruct
-	public void init() {
-		fileUploadPath = environment.getRequiredProperty("file.upload.path");
-	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/")
 	public String provideUploadInfo(Model model) {

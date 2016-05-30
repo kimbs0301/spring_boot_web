@@ -27,6 +27,7 @@ import com.example.config.embedded.EmbeddedTomcatConfig;
 // http://www.mkyong.com/spring-mvc/spring-4-mvc-ajax-hello-world-example/
 // http://blog.woniper.net/231 
 // spring boot에서 swagger 설정 및 사용 - http://blog.woniper.net/281
+// http://stove99.tistory.com/152
 // java -jar myproject.jar --spring.config.name=myproject
 
 

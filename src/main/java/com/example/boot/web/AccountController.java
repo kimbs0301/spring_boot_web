@@ -3,6 +3,7 @@ package com.example.boot.web;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,11 +32,13 @@ public class AccountController {
 	private AccountService accountService;
 	@Autowired
 	private String cacheName;
+	@Value("#{configProperties['context.path']}")
+	private String contextPath;
 	
 	@RequestMapping(value = "/member/{memberId}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public Account getAccount(@PathVariable Long memberId) {
-		LOGGER.debug("{}, {}", memberId, cacheName);
+		LOGGER.debug("{}, {} {}", memberId, cacheName, contextPath);
 		Account account = new Account();
 		accountService.config();
 		return account;

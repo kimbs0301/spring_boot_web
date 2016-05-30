@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>spring boot web example</title>
+<spring:eval expression="@configProperties" var="webProp" scope="request"/>
 <c:url var="home" value="/" scope="request" />
 <spring:url value="/resources/css/bootstrap.min.css" var="bootstrapCss" />
 <spring:url value="/resources/js/jquery.1.10.2.min.js" var="jqueryJs" />
@@ -61,7 +62,7 @@ function display(data) {
 <nav class="navbar navbar-inverse">
 	<div class="container">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#">Ajax</a>
+			<a class="navbar-brand" href="#">Ajax ${webProp['context.path']}</a>
 		</div>
 	</div>
 </nav>
