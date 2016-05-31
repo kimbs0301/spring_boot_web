@@ -37,4 +37,3 @@ cd /tools/tomcat-8.0.33/bin
 
 
 org.springframework.scheduling.config.ScheduledTaskRegistrar
-107

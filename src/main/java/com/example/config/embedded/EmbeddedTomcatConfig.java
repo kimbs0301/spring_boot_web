@@ -65,7 +65,7 @@ public class EmbeddedTomcatConfig {
 		factory.addContextValves(accessLogValve);
 
 		// Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
-		// connector.setPort(8080);
+		// connector.setPort(8081);
 		// factory.addAdditionalTomcatConnectors(connector);
 
 		List<ServletContextInitializer> servletContextInitializers = new ArrayList<>();
@@ -80,39 +80,19 @@ public class EmbeddedTomcatConfig {
 		Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
 		Http11NioProtocol protocol = (Http11NioProtocol) connector.getProtocolHandler();
 		try {
-//			File keystore = new ClassPathResource("client.p12").getFile();
-//			File truststore = new ClassPathResource("crtfile.crt").getFile();
-//			connector.setScheme("https");
-//			connector.setSecure(true);
-//			connector.setPort(8443);
-//			protocol.setSSLEnabled(true);
-//			protocol.setKeystoreFile(keystore.getAbsolutePath());
-//			protocol.setKeystorePass("123456");
-//			protocol.setTruststoreFile(truststore.getAbsolutePath());
-//			protocol.setTruststorePass("123456");
-//			//protocol.setKeyAlias("apitester");
-//			protocol.setClientAuth("true");
-//			protocol.setSslProtocol("TLS");
-//			connector.setURIEncoding("UTF-8");
-			
-			File keystore = new ClassPathResource("client.p12").getFile();
+			File keystore = new ClassPathResource("tomcat.jks").getFile();
+			File truststore = new ClassPathResource("truststore.jks").getFile();
 			connector.setScheme("https");
 			connector.setSecure(true);
 			connector.setPort(8443);
 			protocol.setSSLEnabled(true);
 			protocol.setKeystoreFile(keystore.getAbsolutePath());
 			protocol.setKeystorePass("123456");
-			protocol.setKeystoreType("PKCS12");
+			protocol.setTruststoreFile(truststore.getAbsolutePath());
+			protocol.setTruststorePass("123456");
 			protocol.setClientAuth("false");
-			protocol.setKeyAlias("tomcat");
-			
-//			File absoluteKeystoreFile = new ClassPathResource("keystore.p12").getFile();
-//			protocol.setSSLEnabled(true);
-//			protocol.setKeystoreFile(absoluteKeystoreFile.getAbsolutePath());
-//			protocol.setKeystorePass("123456");
-//			protocol.setKeystoreType("PKCS12");
-//			protocol.setKeyAlias("tomcat");
-			
+			protocol.setKeyAlias("tomcat_server");
+			protocol.setSslProtocol("TLS");
 			return connector;
 		} catch (IOException ex) {
 			throw new IllegalStateException("can't access keystore: [" + "keystore" + "] or truststore: [" + "keystore"
