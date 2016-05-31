@@ -20,9 +20,7 @@ http://localhost:8080/mvc/jsps/welcome
 http://localhost:8080/mvc/file/
 http://localhost:8080/mvc/filedownload/sample/tmpfile/ok
 http://localhost:8080/mvc/filedownload/sample/tmpfile.json/ok
-curl -v -E ./file.crt.pem --key ./file.key.pem -H "Accept: application/json" "https://localhost:8443/mvc/members/member/11.json" | python -m json.tool
-
-curl -E ./file.crt.pem --key ./file.key.pem
+https://localhost:8443/mvc/members/member/11.json
 
 mvn assembly:assembly
 
