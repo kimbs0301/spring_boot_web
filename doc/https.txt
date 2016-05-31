@@ -50,6 +50,11 @@ $ cp tomcat.jks /workspace/luna/spring_boot_example/src/main/resources/
 $ cp truststore.jks /workspace/luna/spring_boot_example/src/main/resources/
 
 
+
+sudo tcpdump -nnvvXSs 8000 -ilo0 host localhost and port 8443
+sudo tcpdump -nnvvXSs 8000 -ilo0 host localhost and port 8080
+
+
 private Connector createSslConnector() {
 	Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
 	Http11NioProtocol protocol = (Http11NioProtocol) connector.getProtocolHandler();
