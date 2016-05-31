@@ -90,6 +90,7 @@ public class EmbeddedTomcatConfig {
 			protocol.setKeystorePass("123456");
 			protocol.setTruststoreFile(truststore.getAbsolutePath());
 			protocol.setTruststorePass("123456");
+			// protocol.setClientAuth("true"); // 웹브라우져 client.p12 인증서 등록 필요
 			protocol.setClientAuth("false");
 			protocol.setKeyAlias("tomcat_server");
 			protocol.setSslProtocol("TLS");
