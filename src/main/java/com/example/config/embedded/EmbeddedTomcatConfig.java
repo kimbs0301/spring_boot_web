@@ -35,6 +35,8 @@ public class EmbeddedTomcatConfig {
 
 	@Autowired
 	private Environment environment;
+//	@Autowired
+//	private EmbeddedTomcatWebInitalizer embeddedTomcatWebInitalizer;
 
 	public EmbeddedTomcatConfig() {
 		LOGGER.debug("==============");

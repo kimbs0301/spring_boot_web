@@ -41,7 +41,7 @@ import com.example.config.embedded.EmbeddedTomcatConfig;
 // @ComponentScan(excludeFilters = @Filter(value = { JunitConfig.class,
 // WebConfig.class }, type = FilterType.ASSIGNABLE_TYPE))
 @Import(CommandLineConfig.class)
-@ComponentScan(basePackageClasses = EmbeddedTomcatConfig.class)
+@ComponentScan(basePackageClasses = {EmbeddedTomcatConfig.class})
 public class Application {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
 
