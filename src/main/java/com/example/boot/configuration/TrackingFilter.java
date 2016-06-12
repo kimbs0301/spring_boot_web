@@ -27,7 +27,7 @@ public class TrackingFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
 			ServletException {
-		LOGGER.debug("security filter");
+		LOGGER.debug("tracking filter");
 		chain.doFilter(request, response);
 	}
 

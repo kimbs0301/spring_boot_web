@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.catalina.Context;
+import org.apache.catalina.LifecycleEvent;
+import org.apache.catalina.LifecycleListener;
 import org.apache.catalina.connector.Connector;
 import org.apache.catalina.valves.AccessLogValve;
 import org.apache.coyote.http11.Http11NioProtocol;
@@ -16,7 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.MimeMappings;
 import org.springframework.boot.context.embedded.ServletContextInitializer;
-import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
+import org.springframework.boot.context.embedded.tomcat.TomcatConnectorCustomizer;
+import org.springframework.boot.context.embedded.tomcat.TomcatContextCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -35,8 +39,6 @@ public class EmbeddedTomcatConfig {
 
 	@Autowired
 	private Environment environment;
-//	@Autowired
-//	private EmbeddedTomcatWebInitalizer embeddedTomcatWebInitalizer;
 
 	public EmbeddedTomcatConfig() {
 		LOGGER.debug("==============");
@@ -46,7 +48,6 @@ public class EmbeddedTomcatConfig {
 
 	@Bean
 	public EmbeddedServletContainerFactory servletContainer() {
-		// EmbeddedServletContainerAutoConfiguration
 		TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory(
 				environment.getRequiredProperty("context.path"), 8080);
 		factory.setProtocol("org.apache.coyote.http11.Http11NioProtocol");
@@ -66,9 +67,54 @@ public class EmbeddedTomcatConfig {
 		accessLogValve.setSuffix(".log");
 		factory.addContextValves(accessLogValve);
 
-		// Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
-		// connector.setPort(8081);
-		// factory.addAdditionalTomcatConnectors(connector);
+		factory.addContextCustomizers(new TomcatContextCustomizer() {
+
+			@Override
+			public void customize(Context context) {
+
+			}
+		});
+
+		factory.addContextLifecycleListeners(new LifecycleListener() {
+
+			@Override
+			public void lifecycleEvent(LifecycleEvent event) {
+
+			}
+		});
+
+		factory.addConnectorCustomizers(new TomcatConnectorCustomizer() {
+
+			@Override
+			public void customize(Connector connector) {
+				connector.setProperty("maxProcessors", "150");
+				connector.setProperty("maxThreads", "150");
+				connector.setProperty("minSpareThreads", "25");
+				connector.setProperty("maxSpareThreads", "75");
+				connector.setProperty("acceptCount", "150");
+				connector.setProperty("socket.directBuffer", "true");
+				connector.setProperty("socket.rxBufSize", "25188");
+				connector.setProperty("socket.txBufSize", "43800");
+				connector.setProperty("socket.appReadBufSize", "32768");
+				connector.setProperty("socket.appWriteBufSize", "32768");
+				connector.setProperty("socket.bufferPool", "500");
+				connector.setProperty("socket.bufferPoolSize", "100000000");
+				connector.setProperty("socket.processorCache", "500");
+				connector.setProperty("socket.keyCache", "500");
+				connector.setProperty("socket.eventCache", "500");
+				connector.setProperty("socket.tcpNoDelay", "true");
+				connector.setProperty("socket.soKeepAlive", "false");
+				connector.setProperty("connectionTimeout", "3000");
+				connector.setProperty("socket.soTimeout", "5000");
+				connector.setProperty("useComet", "false");
+				connector.setProperty("compression", "on");
+				connector.setProperty("compressionMinSize", "2048");
+				connector.setProperty("compressableMimeType", "text/html,text/xml,text/plain,application/json");
+				connector.setEnableLookups(false);
+				connector.setURIEncoding("UTF-8");
+				connector.setXpoweredBy(false);
+			}
+		});
 
 		List<ServletContextInitializer> servletContextInitializers = new ArrayList<>();
 		servletContextInitializers.add(new EmbeddedTomcatWebInitalizer());
